@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Test page</title>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('#removeHandler').bind('click', function() {
+                $('#button').off();
+                return false;
+            });
+            $('#button').bind('click', function() {
+                alert('event handler called');
+                return false;
+            });
+            var buttonEl = $('#button').get(0);
+            console.log('--------------inside iframe output------------------')
+
+            console.log(buttonEl)
+            console.log('Listeners for #button: ', jQuery._data(buttonEl, "events" ));
+            console.log('--------------inside iframe output------------------')
+
+        });
+    </script>
+</head>
+<body>
+
+<form action="page.html">
+    <button id="button">Submit form</button>
+    <button id="removeHandler">Remove event handler</button>
+</form>
+</body>
+</html>
